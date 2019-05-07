@@ -1,7 +1,7 @@
 {
-  "name": "@sportheroes/bk-conventional-changelog",
+  "name": "@joethefkingfrypan/bk-conventional-changelog",
   "version": "2.0.0",
-  "description": "conventional-changelog SportHeroesGroup backend preset",
+  "description": "Fork of conventional-changelog SportHeroesGroup backend preset",
   "main": "index.js",
   "scripts": {
     "lint": "jshint *.js --exclude node_modules && jscs *.js",

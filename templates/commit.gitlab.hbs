@@ -1,0 +1,9 @@
+* **{{scope}}**:
+
+{{~!-- commit hash --}} {{#if @root.linkReferences}}[`{{hash}}`]({{#if @root.host}}{{@root.host}}/{{/if}}{{#if @root.owner}}{{@root.owner}}/{{/if}}{{@root.repository}}/{{@root.commit}}/{{hash}}){{else}}{{hash~}}{{/if}}
+
+{{~!-- commit description --}} {{#if shortDesc}}{{shortDesc}}{{else}}{{header}}{{/if}}
+
+{{~!-- commit author --}} ({{#if username}}[{{username}}](https://gitlab.com/{{username}}) - [{{committerEmail}}](mailto:{{committerEmail}}){{else}}[{{committerEmail}}](mailto:{{committerEmail}}){{/if}})
+
+{{~!-- commit references --}} {{#if references}}, closes{{~#each references}} {{#if @root.linkReferences}}[{{#if this.owner}}{{this.owner}}/{{/if}}{{this.repository}}#{{this.issue}}]({{#if @root.host}}{{@root.host}}/{{/if}}{{#if this.repository}}{{#if this.owner}}{{this.owner}}/{{/if}}{{this.repository}}{{else}}{{#if @root.owner}}{{@root.owner}}/{{/if}}{{@root.repository}}{{/if}}/{{@root.issue}}/{{this.issue}}){{else}}{{#if this.owner}}{{this.owner}}/{{/if}}{{this.repository}}#{{this.issue}}{{/if}}{{/each}}{{/if}}

@@ -1,6 +1,6 @@
 'use strict';
 
-const { CHANGELOG: { GITHUB_USERNAMES = {}} = {}} = require('config');
+const { CHANGELOG: { REPOSITORY_TYPE = 'github', GITHUB_USERNAMES = {}, USERNAMES = {}} = {}} = require('config');
 const Q = require('q');
 const readFile = Q.denodeify(require('fs').readFile);
 const resolve = require('path').resolve;
@@ -15,6 +15,11 @@ const fullNames = {
   PUB: '⏩ Versioning',
   TEST: '🔀 Testing',
   DEFAULT: '😭 Unclassified (not [following convention](https://github.com/sportheroes/bk-conventional-changelog#types-of-commits))',
+};
+
+const FINAL_USERNAMES = {
+  ...GITHUB_USERNAMES,
+  ...USERNAMES,
 };
 
 const beautifyDescription = commit => {
@@ -51,8 +56,16 @@ const beautifyHash = commit => {
 
 const setUsername = commit => {
   if (typeof commit.committerEmail === 'string') {
-    if (GITHUB_USERNAMES[commit.committerEmail]) {
-      commit.username = GITHUB_USERNAMES[commit.committerEmail];
+    if (FINAL_USERNAMES[commit.committerEmail]) {
+      commit.username = FINAL_USERNAMES[commit.committerEmail];
+    }
+  }
+};
+
+const setMerger = commit => {
+  if (typeof commit.mergerEmail === 'string') {
+    if (FINAL_USERNAMES[commit.mergerEmail]) {
+      commit.mergerUsername = FINAL_USERNAMES[commit.mergerEmail];
     }
   }
 };
@@ -86,6 +99,7 @@ function presetOpts(cb) {
       beautifyScope(commit);
       beautifyHash(commit);
       setUsername(commit);
+      setMerger(commit);
 
       return process(commit);
     },
@@ -94,10 +108,16 @@ function presetOpts(cb) {
     commitsSort: ['scope', 'shortDesc']
   };
 
+  let commitTemplate = 'templates/commit.github.hbs';
+
+  if (REPOSITORY_TYPE && REPOSITORY_TYPE.toLowerCase() === 'gitlab') {
+    commitTemplate = 'templates/commit.gitlab.hbs';
+  }
+
   Q.all([
     readFile(resolve(__dirname, 'templates/template.hbs'), 'utf-8'),
     readFile(resolve(__dirname, 'templates/header.hbs'), 'utf-8'),
-    readFile(resolve(__dirname, 'templates/commit.hbs'), 'utf-8')
+    readFile(resolve(__dirname, commitTemplate), 'utf-8')
   ])
     .spread(function(template, header, commit) {
       writerOpts.mainTemplate = template;

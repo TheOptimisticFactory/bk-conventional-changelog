@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/sportheroes/bk-conventional-changelog/compare/v2.0.0...v2.1.0) (2019-05-07)
+
+
+### ✅ Features
+
+* **Core**: Added Gitlab support ([c8e1770](https://github.com/sportheroes/bk-conventional-changelog/commit/c8e1770)))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/sportheroes/bk-conventional-changelog/compare/v1.8.1...v2.0.0) (2019-02-22)
 

@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/sportheroes/bk-conventional-changelog/compare/v2.1.0...v2.2.0) (2019-10-02)
+
+
+### ✅ Features
+
+* **Core**: Adjusted regex to classify non-emoji commits ([1f25a17](https://github.com/sportheroes/bk-conventional-changelog/commit/1f25a17) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+### ✴️ Bug Fixes
+
+* **Github**: Adjusted minor hiccup for anonymous commits ([f0fc683](https://github.com/sportheroes/bk-conventional-changelog/commit/f0fc683) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+### 🔀 Testing
+
+* **Core**: Added example of commits lacking emojis ([6cf1ffb](https://github.com/sportheroes/bk-conventional-changelog/commit/6cf1ffb) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+### 🔄 Notable changes
+
+* **Dependencies**: Bumped dependencies to their latest version ([e5c0d7f](https://github.com/sportheroes/bk-conventional-changelog/commit/e5c0d7f) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/sportheroes/bk-conventional-changelog/compare/v2.0.0...v2.1.0) (2019-05-07)
 

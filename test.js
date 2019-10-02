@@ -28,6 +28,8 @@ describe('SportHeroesGroup backend preset', () => {
     gitDummyCommit('Merge pull request #2334 from sportheroes/romain/feature/facebook-email-fallback');
     gitDummyCommit(' ✴️ [FIX] (unitedMonthly) use getHighest date between userClientCreatedAt and exportStartAt');
     gitDummyCommit('⏩ [PUB] (release) 1.87.0');
+    gitDummyCommit('[ADD] (app) display error message when user cannot fullscreen');
+    gitDummyCommit('[FIX] (app, router) add optional token for public routes')
   });
 
   it('should work if there is no semver tag', (done) => {
@@ -52,6 +54,8 @@ describe('SportHeroesGroup backend preset', () => {
         expect(chunk).to.include('Published sub-packages');
         expect(chunk).to.include('Merge pull request #2334 from sportheroes/romain/feature/facebook-email-fallback');
         expect(chunk).to.include('use getHighest date between userClientCreatedAt and exportStartAt');
+        expect(chunk).to.include('display error message when user cannot fullscreen');
+        expect(chunk).to.include('add optional token for public routes');
 
         // Changelog should NOT INCLUDE this commits
         expect(chunk).to.not.include('1.87.0');

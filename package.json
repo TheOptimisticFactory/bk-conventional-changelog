@@ -1,6 +1,6 @@
 {
   "name": "@joethefkingfrypan/bk-conventional-changelog",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Fork of conventional-changelog SportHeroesGroup backend preset",
   "main": "index.js",
   "scripts": {
@@ -31,20 +31,20 @@
   },
   "homepage": "https://github.com/sportheroes/bk-conventional-changelog#readme",
   "peerDependencies": {
-    "config": ">=3.X <4.X"
+    "config": ">=3.X"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "config": ">=3.X <4.X",
-    "conventional-changelog-core": "3.0.0",
+    "chai": ">=4.5.0 <5.X",
+    "config": "4.3.0",
+    "conventional-changelog-core": ">=5.0.2 <6.X",
     "git-dummy-commit": "^1.3.0",
-    "jscs": "^3.0.7",
-    "jshint": "^2.10.2",
-    "mocha": "*",
-    "shelljs": "^0.8.3",
-    "through2": "^3.0.1"
+    "jscs": "3.0.7",
+    "jshint": "2.13.6",
+    "mocha": "11.7.5",
+    "shelljs": "0.10.0",
+    "through2": "4.0.2"
   },
   "dependencies": {
-    "q": "^1.5.1"
+    "q": "1.5.1"
   }
 }

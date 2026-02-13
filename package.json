@@ -1,6 +1,6 @@
 {
   "name": "@joethefkingfrypan/bk-conventional-changelog",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Fork of conventional-changelog SportHeroesGroup backend preset",
   "main": "index.js",
   "scripts": {

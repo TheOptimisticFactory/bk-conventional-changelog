@@ -1,20 +1,53 @@
 'use strict';
 
+const { execSync } = require('child_process');
 const conventionalChangelogCore = require('conventional-changelog-core');
-const preset = require('./');
 const expect = require('chai').expect;
-const gitDummyCommit = require('git-dummy-commit');
-const shell = require('shelljs');
+const fsPromises = require('fs/promises');
+const path = require('path');
 const through = require('through2');
 
+const preset = require('./');
+const TMP_DIRECTORY = path.join(__dirname, 'tmp');
+
+const setupRuntime = async () => {
+  await fsPromises.rm(TMP_DIRECTORY, {
+    force: true,
+    recursive: true,
+  });
+
+  await fsPromises.mkdir(TMP_DIRECTORY, {
+    recursive: true,
+  });
+
+  process.chdir(TMP_DIRECTORY);
+
+  execSync('git init --template=./git-templates', {
+    stdio: 'ignore',
+  });
+};
+
+const cleanupRuntime = async () => {
+  process.chdir(__dirname);
+
+  await fsPromises.rm(TMP_DIRECTORY, {
+    force: true,
+    recursive: true,
+  });
+};
+
+const gitDummyCommit = msg => {
+  // Use --allow-empty to create a commit without file changes
+  // Use --no-gpg-sign to avoid hanging if the user has GPG signing enabled globally
+  execSync(`git commit -m "${msg}" --allow-empty --no-gpg-sign`, {
+    stdio: 'ignore',
+  });
+};
+
 describe('SportHeroesGroup backend preset', () => {
-  before(() => {
-    shell.config.silent = true;
-    shell.rm('-rf', 'tmp');
-    shell.mkdir('tmp');
-    shell.cd('tmp');
-    shell.mkdir('git-templates');
-    shell.exec('git init --template=./git-templates');
+  // eslint-disable-next-line mocha/no-hooks-for-single-case
+  before(async () => {
+    await setupRuntime();
 
     gitDummyCommit('Add default port AWS');
     gitDummyCommit('✅ [ADD] Sort by members count');
@@ -29,10 +62,15 @@ describe('SportHeroesGroup backend preset', () => {
     gitDummyCommit(' ✴️ [FIX] (unitedMonthly) use getHighest date between userClientCreatedAt and exportStartAt');
     gitDummyCommit('⏩ [PUB] (release) 1.87.0');
     gitDummyCommit('[ADD] (app) display error message when user cannot fullscreen');
-    gitDummyCommit('[FIX] (app, router) add optional token for public routes')
+    gitDummyCommit('[FIX] (app, router) add optional token for public routes');
   });
 
-  it('should work if there is no semver tag', (done) => {
+  // eslint-disable-next-line mocha/no-hooks-for-single-case
+  after(async () => {
+    await cleanupRuntime();
+  });
+
+  it('should work if there is no semver tag', done => {
     const params = {
       config: preset,
     };

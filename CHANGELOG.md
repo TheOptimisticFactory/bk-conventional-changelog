@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/sportheroes/bk-conventional-changelog/compare/v2.3.0...v3.0.0) (2026-02-13)
+
+
+### ✅ Features
+
+* **Core**: Added support of conventional-changelog-core <8.X ([](https://github.com/sportheroes/bk-conventional-changelog/commit/))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/sportheroes/bk-conventional-changelog/compare/v2.2.0...v2.3.0) (2026-02-13)
 
